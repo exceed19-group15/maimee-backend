@@ -9,11 +9,11 @@ current_game_state = MENU
 current_song = None
 
 
-@router.get("/")
+@router.get("/", response_model=GameState)
 async def get_game_state() -> GameState:
     pass
 
 
-@router.post("/")
+@router.post("/", response_model=GameState)
 async def set_game_state(game_state: GameState) -> GameState:
     pass
