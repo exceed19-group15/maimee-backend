@@ -1,10 +1,9 @@
 from datetime import datetime
-from typing import List
 
 from pydantic import BaseModel
 
 
-class PlayRecord(BaseModel):
+class Record(BaseModel):
     username: str
     beatmap_id: int
     score: int
