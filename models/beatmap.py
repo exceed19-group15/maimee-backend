@@ -57,3 +57,9 @@ class Beatmap(BaseModel):
         if value < 0:
             raise ValueError('duration must be greater than 0')
         return value
+
+    @validator('beats')
+    def validate_beats(cls, value):
+        if len(value) == 0:
+            raise ValueError('beats must not be empty')
+        return value
