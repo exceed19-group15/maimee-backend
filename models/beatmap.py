@@ -4,7 +4,7 @@ import validators
 from pydantic import BaseModel, validator
 
 
-class BeatmapInfo(BaseModel):
+class Beatmap(BaseModel):
     beatmap_id: int
     name: str
     difficulty: int
