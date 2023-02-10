@@ -4,31 +4,7 @@ import validators
 from pydantic import BaseModel, validator
 
 
-class Beat(BaseModel):
-    pad_num: int
-    timestamp: int
-    frequency: int
-
-    @validator("pad_num")
-    def validate_pad_num(cls, value):
-        if value not in range(-1, 4):
-            raise ValueError("pad_num must be between -1 and 4")
-        return value
-
-    @validator("timestamp")
-    def validate_timestamp(cls, value):
-        if value < 0:
-            raise ValueError("timestamp must be greater than 0")
-        return value
-
-    @validator("frequency")
-    def validate_frequency(cls, value):
-        if value != 0 and (value < 50 or value > 14000):
-            raise ValueError("frequency must be between 50 and 14000 or 0")
-        return value
-
-
-class BeatmapInfo(BaseModel):
+class Beatmap(BaseModel):
     beatmap_id: int
     name: str
     difficulty: int
@@ -64,14 +40,4 @@ class BeatmapInfo(BaseModel):
     def validate_image_url(cls, value):
         if not validators.url(value):
             raise ValueError("image_url must be an url")
-        return value
-
-
-class Beatmap(BeatmapInfo):
-    beats: List[Beat]
-
-    @validator("beats")
-    def validate_beats(cls, value):
-        if len(value) == 0:
-            raise ValueError("beats must not be empty")
         return value
