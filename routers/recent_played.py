@@ -13,6 +13,13 @@ recent_miss = None
 
 @router.get("/", response_model=Optional[Recent])
 async def get_recent() -> Optional[Recent]:
+    if (
+        recent_played_beatmap is None
+        or recent_score is None
+        or recent_hit is None
+        or recent_miss is None
+    ):
+        return None
     return Recent(
         beatmap_id=recent_played_beatmap,
         score=recent_score,
