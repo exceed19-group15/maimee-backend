@@ -35,7 +35,7 @@ class BeatmapInfo(BaseModel):
     note_count: int
     bpm: int
     duration: int
-    cover: str
+    image_url: str
 
     @validator("difficulty")
     def validate_difficulty(cls, value):
@@ -61,10 +61,10 @@ class BeatmapInfo(BaseModel):
             raise ValueError("duration must be greater than 0")
         return value
 
-    @validator("cover")
-    def validate_cover(cls, value):
+    @validator("image_url")
+    def validate_image_url(cls, value):
         if not validators.url(value):
-            raise ValueError("cover must be an url")
+            raise ValueError("image_url must be an url")
         return value
 
 
