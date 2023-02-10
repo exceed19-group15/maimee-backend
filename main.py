@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from routers import beatmap, gamestate, record
+from routers import beatmap, gamestate, recent_played, record
 
 origins = ["*"]
 
@@ -19,6 +19,7 @@ app.add_middleware(
 app.include_router(gamestate.router)
 app.include_router(beatmap.router)
 app.include_router(record.router)
+app.include_router(recent_played.router)
 
 
 @app.exception_handler(ValueError)
