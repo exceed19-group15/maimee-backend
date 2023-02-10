@@ -36,6 +36,12 @@ class BeatmapInfo(BaseModel):
     duration: int
     image_url: str
 
+    @validator("name")
+    def validate_name(cls, name):
+        if len(name) not in range(0, 16):
+            raise ValueError("name must be between 0 and 15 letter")
+        return name
+
     @validator("difficulty")
     def validate_difficulty(cls, value):
         if value not in range(1, 11):
