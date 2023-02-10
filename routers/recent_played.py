@@ -1,9 +1,10 @@
-from fastapi import APIRouter
 from typing import Optional
+
+from fastapi import APIRouter
 
 from models.recent_played import Recent
 
-router = APIRouter(prefix="/Recent")
+router = APIRouter(prefix="/recent")
 recent_played_beatmap = None
 recent_score = None
 recent_hit = None
@@ -12,7 +13,12 @@ recent_miss = None
 
 @router.get("/", response_model=Optional[Recent])
 async def get_recent() -> Optional[Recent]:
-    return Recent(beatmap_id=recent_played_beatmap, score=recent_score, hit=recent_hit, miss=recent_miss)
+    return Recent(
+        beatmap_id=recent_played_beatmap,
+        score=recent_score,
+        hit=recent_hit,
+        miss=recent_miss,
+    )
 
 
 @router.post("/", response_model=Recent)
