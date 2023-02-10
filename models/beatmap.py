@@ -33,7 +33,6 @@ class BeatmapInfo(BaseModel):
     name: str
     difficulty: int
     note_count: int
-    bpm: int
     duration: int
     image_url: str
 
@@ -47,12 +46,6 @@ class BeatmapInfo(BaseModel):
     def validate_note_count(cls, value):
         if value < 0:
             raise ValueError("note_count must be greater than 0")
-        return value
-
-    @validator("bpm")
-    def validate_bpm(cls, value):
-        if value < 0:
-            raise ValueError("bpm must be greater than 0")
         return value
 
     @validator("duration")
