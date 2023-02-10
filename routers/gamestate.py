@@ -18,10 +18,10 @@ async def get_game_state() -> GameState:
 async def set_game_state(game_state: GameState) -> GameState:
     global current_game_state, current_beatmap
 
-    if game_state.game_state == PLAYING and game_state.beatmap is None:
+    if game_state.game_state == PLAYING and game_state.beatmap_id is None:
         raise ValueError("beatmap must be set when game_state is PLAYING")
 
     current_game_state = game_state.game_state
-    current_beatmap = game_state.beatmap
+    current_beatmap = game_state.beatmap_id
 
     return game_state
