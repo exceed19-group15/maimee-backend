@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from pydantic import BaseModel
 
 
@@ -12,7 +11,7 @@ class Record(BaseModel):
     time: datetime
 
 
-class RecordPutModel(BaseModel):
+class RecordPostModel(BaseModel):
     username: str
     score: int
     hit: int
