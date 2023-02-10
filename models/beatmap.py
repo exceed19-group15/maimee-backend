@@ -1,7 +1,7 @@
 from typing import List
 
-from pydantic import BaseModel, validator
 import validators
+from pydantic import BaseModel, validator
 
 
 class Beat(BaseModel):
@@ -23,8 +23,8 @@ class Beat(BaseModel):
 
     @validator("frequency")
     def validate_frequency(cls, value):
-        if value < 50 or value > 14000:
-            raise ValueError("frequency must be between 50 and 14000")
+        if value != 0 and (value < 50 or value > 14000):
+            raise ValueError("frequency must be between 50 and 14000 or 0")
         return value
 
 
