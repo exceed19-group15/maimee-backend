@@ -30,7 +30,7 @@ async def post_beatmap_play_record(beatmap_id: int, record: RecordPostModel) -> 
     posting_body["time"] = datetime.now()
 
     play_record.update_one({"beatmap_id": beatmap_id}, {"$set": posting_body})
-    return {"message": f"Posted {posting_body}"}
+    return posting_body
 
 
 @router.get("/user/{username}/", response_model=List[Record])
