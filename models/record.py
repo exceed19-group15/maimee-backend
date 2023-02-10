@@ -10,3 +10,10 @@ class Record(BaseModel):
     hit: int
     miss: int
     time: datetime
+
+
+class RecordPutModel(BaseModel):
+    username: str
+    score: int
+    hit: int
+    miss: int

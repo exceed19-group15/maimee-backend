@@ -1,6 +1,7 @@
 from typing import List
 
 from pydantic import BaseModel, validator
+import validators
 
 
 class Beat(BaseModel):
@@ -10,8 +11,8 @@ class Beat(BaseModel):
 
     @validator("pad_num")
     def validate_pad_num(cls, value):
-        if value not in range(0, 4):
-            raise ValueError("pad_num must be between 0 and 3")
+        if value not in range(-1, 4):
+            raise ValueError("pad_num must be between -1 and 4")
         return value
 
     @validator("timestamp")
@@ -34,6 +35,7 @@ class BeatmapInfo(BaseModel):
     note_count: int
     bpm: int
     duration: int
+    cover: str
 
     @validator("difficulty")
     def validate_difficulty(cls, value):
@@ -57,6 +59,12 @@ class BeatmapInfo(BaseModel):
     def validate_duration(cls, value):
         if value < 0:
             raise ValueError("duration must be greater than 0")
+        return value
+
+    @validator("cover")
+    def validate_cover(cls, value):
+        if not validators.url(value):
+            raise ValueError("cover must be an url")
         return value
 
 
