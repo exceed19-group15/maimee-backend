@@ -34,11 +34,11 @@ async def get_leaderboard(
         {"$project": {"_id": 0}},
     ]
 
+    aggregation.append({"$sort": {"score": -1}})
+
     if limit is not None:
         if limit <= 0:
             raise ValueError("limit must be greater than 0")
         aggregation.append({"$limit": limit})
-
-    aggregation.append({"$sort": {"score": -1}})
 
     return list(play_record.aggregate(aggregation))
