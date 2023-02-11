@@ -8,7 +8,7 @@ from models.beatmap import Beatmap
 router = APIRouter(prefix="/beatmap")
 
 
-@router.get("/", response_model=List[Beatmap])
+@router.get("", response_model=List[Beatmap])
 async def get_all_beatmap() -> List[Beatmap]:
     return list(beatmap.find({}, {"_id": 0}))
 
