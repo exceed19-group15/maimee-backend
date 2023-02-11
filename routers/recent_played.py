@@ -11,7 +11,7 @@ recent_hit = None
 recent_miss = None
 
 
-@router.get("/", response_model=Optional[Recent])
+@router.get("", response_model=Optional[Recent])
 async def get_recent() -> Optional[Recent]:
     if (
         recent_played_beatmap is None
@@ -28,7 +28,7 @@ async def get_recent() -> Optional[Recent]:
     )
 
 
-@router.post("/", response_model=Dict[str, str])
+@router.post("", response_model=Dict[str, str])
 async def post_recent(recent: Recent) -> Dict[str, str]:
     global recent_played_beatmap, recent_score, recent_hit, recent_miss
 
