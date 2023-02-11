@@ -12,6 +12,11 @@ class Record(BaseModel):
     time: datetime
 
 
+class LeaderboardRecord(BaseModel):
+    username: str
+    score: int
+
+
 class RecordPostModel(BaseModel):
     username: str
     score: int
