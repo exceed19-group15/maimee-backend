@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Dict, Optional
 
 from fastapi import APIRouter
 
@@ -28,8 +28,8 @@ async def get_recent() -> Optional[Recent]:
     )
 
 
-@router.post("/", response_model=Recent)
-async def post_recent(recent: Recent) -> Recent:
+@router.post("/", response_model=Dict[str, str])
+async def post_recent(recent: Recent) -> Dict[str, str]:
     global recent_played_beatmap, recent_score, recent_hit, recent_miss
 
     recent_played_beatmap = recent.beatmap_id
@@ -37,4 +37,4 @@ async def post_recent(recent: Recent) -> Recent:
     recent_hit = recent.hit
     recent_miss = recent.miss
 
-    return recent
+    return {"message": "success"}

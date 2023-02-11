@@ -1,3 +1,5 @@
+from typing import Dict
+
 from fastapi import APIRouter
 
 from constants import FINISHED, MENU, PLAYING
@@ -14,8 +16,8 @@ async def get_game_state() -> GameState:
     return GameState(game_state=current_game_state, beatmap=current_beatmap)
 
 
-@router.post("/", response_model=GameState)
-async def set_game_state(game_state: GameState) -> GameState:
+@router.post("/", response_model=Dict[str, str])
+async def set_game_state(game_state: GameState) -> Dict[str, str]:
     global current_game_state, current_beatmap
 
     if game_state.game_state == PLAYING and game_state.beatmap_id is None:
@@ -24,4 +26,4 @@ async def set_game_state(game_state: GameState) -> GameState:
     current_game_state = game_state.game_state
     current_beatmap = game_state.beatmap_id
 
-    return game_state
+    return {"message": "success"}
